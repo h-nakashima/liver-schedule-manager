@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { Request, Response } from "express";
-import EventsService from "../../services/examples.service";
+import EventsService from "../../services/events.service";
 
 export class Controller {
   all(_: Request, res: Response): void {

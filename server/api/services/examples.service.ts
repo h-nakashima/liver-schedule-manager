@@ -2,36 +2,36 @@
 import L from "../../common/logger";
 
 const currentId = 0;
-interface Example {
+interface Event {
   id: number;
   name: string;
 }
 
-const examples: Example[] = [
-  { id: 1, name: "example 0" },
-  { id: 2, name: "example 1" },
+const events: Event[] = [
+  { id: 1, name: "event 0" },
+  { id: 2, name: "event 1" },
 ];
 
-export class ExamplesService {
-  all(): Promise<Example[]> {
-    L.info(examples, "fetch all examples");
-    return Promise.resolve(examples);
+export class EventsService {
+  all(): Promise<Event[]> {
+    L.info(events, "fetch all examples");
+    return Promise.resolve(events);
   }
 
-  byId(id: number): Promise<Example> {
+  byId(id: number): Promise<Event> {
     L.info(`fetch example with id ${id}`);
     return this.all().then((r) => r[id]);
   }
 
-  create(name: string): Promise<Example> {
+  create(name: string): Promise<Event> {
     L.info(`create example with name ${name}`);
-    const example: Example = {
+    const event: Event = {
       id: currentId + 1,
       name,
     };
-    examples.push(example);
-    return Promise.resolve(example);
+    events.push(event);
+    return Promise.resolve(event);
   }
 }
 
-export default new ExamplesService();
+export default new EventsService();

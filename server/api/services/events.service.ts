@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import L from "../../common/logger";
+import knex from "../../knex";
 
 const currentId = 0;
 interface Event {
@@ -15,12 +16,18 @@ const events: Event[] = [
 export class EventsService {
   all(): Promise<Event[]> {
     L.info(events, "fetch all events");
-    return Promise.resolve(events);
+    const result = knex
+      .select({
+        id: "id",
+        name: "name",
+      })
+      .from("events");
+    return Promise.resolve(result);
   }
 
   byId(id: number): Promise<Event> {
     L.info(`fetch event with id ${id}`);
-    return this.all().then((r) => r[id]);
+    return Promise.resolve(events).then((r) => r[id]);
   }
 
   create(name: string): Promise<Event> {

@@ -18,13 +18,13 @@
     "noUnusedLocals": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": false,
-    "strictPropertyInitialization":false,
+    "strictPropertyInitialization": false,
     "alwaysStrict": true,
     "outDir": "dist",
     "typeRoots": ["node_modules/@types"],
     "resolveJsonModule": true,
-    "baseUrl": "."
-
+    "baseUrl": ".",
+    "allowJs": true
   },
   "include": ["server/**/*.ts"],
   "exclude": ["node_modules"]

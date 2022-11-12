@@ -37,6 +37,6 @@ describe("Events", () => {
         expect(r.body)
           .to.be.an("object")
           .that.has.property("name")
-          .equal("test");
+          .equal("Zatsudan");
       }));
 });

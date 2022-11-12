@@ -8,14 +8,14 @@ interface Event {
   name: string;
 }
 
-const events: Event[] = [
+const localEvents: Event[] = [
   { id: 1, name: "event 0" },
   { id: 2, name: "event 1" },
 ];
 
 export class EventsService {
   all(): Promise<Event[]> {
-    L.info(events, "fetch all events");
+    L.info("fetch all events");
     const result = knex
       .select({
         id: "id",
@@ -27,7 +27,17 @@ export class EventsService {
 
   byId(id: number): Promise<Event> {
     L.info(`fetch event with id ${id}`);
-    return Promise.resolve(events).then((r) => r[id]);
+    const result = knex
+      .select({
+        id: "id",
+        name: "name",
+      })
+      .from("events")
+      .where({
+        id,
+      });
+    return Promise.resolve(result).then((events) => events[0]);
+    // return Promise.resolve(events).then((r) => r[id]);
   }
 
   create(name: string): Promise<Event> {
@@ -36,7 +46,7 @@ export class EventsService {
       id: currentId + 1,
       name,
     };
-    events.push(event);
+    localEvents.push(event);
     return Promise.resolve(event);
   }
 }

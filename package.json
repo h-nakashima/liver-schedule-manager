@@ -10,10 +10,13 @@
     "dev:debug": "nodemon --exec \"node -r ts-node/register --inspect-brk\" server/index.ts | pino-pretty",
     "lint": "eslint -c .eslintrc.js \"{server, test}/**/*.{js,ts,tsx}\" --quiet",
     "lint:fix": "eslint -c .eslintrc.js \"{server, test}/**/*.{js,ts,tsx}\" --quiet --fix",
-    "test": "mocha -r ts-node/register test/**/*.ts --exit",
-    "test:debug": "mocha -r ts-node/register --inspect-brk test/**/*.ts --exit",
-    "migrate": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "test": "npm run db:rebuild && mocha -r ts-node/register test/**/*.ts --exit",
+    "test:debug": "npm run db:rebuild && mocha -r ts-node/register --inspect-brk test/**/*.ts --exit",
+    "db:migrate": "knex migrate:latest",
+    "db:seed": "knex seed:run",
+    "db:build": "npm run db:migrate && npm run db:seed",
+    "db:rollback": "knex migrate:rollback --all",
+    "db:rebuild": "npm run db:rollback && npm run db:build"
   },
   "dependencies": {
     "body-parser": "^1.19.2",

@@ -2,16 +2,10 @@
 import L from "../../common/logger";
 import knex from "../../knex";
 
-const currentId = 0;
 interface Event {
   id: number;
   name: string;
 }
-
-const localEvents: Event[] = [
-  { id: 1, name: "event 0" },
-  { id: 2, name: "event 1" },
-];
 
 export class EventsService {
   all(): Promise<Event[]> {
@@ -42,12 +36,10 @@ export class EventsService {
 
   create(name: string): Promise<Event> {
     L.info(`create event with name ${name}`);
-    const event: Event = {
-      id: currentId + 1,
-      name,
-    };
-    localEvents.push(event);
-    return Promise.resolve(event);
+    return knex("events")
+      .insert({ name })
+      .returning("*")
+      .then((events) => events[0]);
   }
 }
 

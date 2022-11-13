@@ -15,6 +15,7 @@ export class EventsService {
         id: "id",
         name: "name",
         platform: "platform",
+        dateTime: "date_time",
       })
       .from("events");
     return Promise.resolve(result);

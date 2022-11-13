@@ -101,4 +101,8 @@ components:
       properties:
         name:
           type: string
-          example: no_stress
+          example: Zatsudan
+        dateTime:
+          type: string
+          example: "2020-01-31T23:59:59+09:00"
+          format: date-time

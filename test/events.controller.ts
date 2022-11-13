@@ -42,6 +42,10 @@ describe("Events", () => {
           .to.be.an("object")
           .that.has.property("name")
           .equal("Zatsudan");
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("platform")
+          .equal("bilibili");
       }));
 
   it("should update an event by id", () =>

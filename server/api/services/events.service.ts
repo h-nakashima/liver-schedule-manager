@@ -26,6 +26,7 @@ export class EventsService {
       .select({
         id: "id",
         name: "name",
+        platform: "platform",
       })
       .from("events")
       .where({

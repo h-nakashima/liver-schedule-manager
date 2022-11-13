@@ -34,10 +34,10 @@ export class EventsService {
     return Promise.resolve(result).then((events) => events[0]);
   }
 
-  create(name: string): Promise<Event> {
+  create(name: string, platform: string): Promise<Event> {
     L.info(`create event with name ${name}`);
     return knex("events")
-      .insert({ name })
+      .insert({ name, platform })
       .returning("*")
       .then((events) => events[0]);
   }

@@ -20,13 +20,17 @@ describe("Events", () => {
   it("should add a new event", () =>
     request(Server)
       .post("/api/v1/events")
-      .send({ name: "test" })
+      .send({ name: "test", platform: "Nico" })
       .expect("Content-Type", /json/)
       .then((r) => {
         expect(r.body)
           .to.be.an("object")
           .that.has.property("name")
           .equal("test");
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("platform")
+          .equal("Nico");
       }));
 
   it("should get an event by id", () =>

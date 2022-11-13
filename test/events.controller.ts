@@ -51,13 +51,17 @@ describe("Events", () => {
   it("should update an event by id", () =>
     request(Server)
       .patch("/api/v1/events/2")
-      .send({ name: "test" })
+      .send({ name: "test", platform: "TwitCasting" })
       .expect("Content-Type", /json/)
       .then((r) => {
         expect(r.body)
           .to.be.an("object")
           .that.has.property("name")
           .equal("test");
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("platform")
+          .equal("TwitCasting");
       }));
 
   it("should delete an event by id", () =>

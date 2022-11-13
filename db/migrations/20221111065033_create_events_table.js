@@ -7,6 +7,7 @@ exports.up = (knex) => {
     table.increments("id").primary();
     table.string("name", 32);
     table.string("platform", 32);
+    table.timestamp("date_time", { useTz: true });
   });
 };
 

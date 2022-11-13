@@ -68,6 +68,21 @@ paths:
         200:
           description: Returns inputted events
           content: {}
+    delete:
+      tags:
+        - Events
+      description: delete a new event
+      parameters:
+        - name: id
+          in: path
+          description: The id of the event to retrieve
+          required: true
+          schema:
+            type: integer
+      responses:
+        204:
+          description: Returns empty body
+          content: {}
   /spec:
     get:
       tags:

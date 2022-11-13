@@ -6,4 +6,5 @@ export default express
   .post("/", controller.create)
   .get("/", controller.all)
   .get("/:id", controller.byId)
-  .patch("/:id", controller.update);
+  .patch("/:id", controller.update)
+  .delete("/:id", controller.delete);

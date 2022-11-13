@@ -52,5 +52,20 @@ describe("Events", () => {
           .equal("test");
       }));
 
-  // TODO: delete, searchのエンドポイントのテストを作成
+  it("should delete an event by id", () =>
+    request(Server)
+      .delete("/api/v1/events/2")
+      .then((r) => {
+        expect(r.statusCode).to.equal(204);
+      }));
+
+  it("should not get an event by id after deleting", () =>
+    request(Server)
+      .get("/api/v1/events/2")
+      .then((r) => {
+        // eslint-disable-next-line no-unused-expressions
+        expect(r.body).to.be.empty;
+      }));
+
+  // TODO: searchのエンドポイントのテストを作成
 });

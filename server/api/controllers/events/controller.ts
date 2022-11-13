@@ -27,5 +27,12 @@ export class Controller {
       res.status(200).location(`/api/v1/events/${r.id}`).json(r)
     );
   }
+
+  delete(req: Request, res: Response): void {
+    const id = Number.parseInt(req.params.id, 10);
+    EventsService.delete(id, req.body.name).then((r) =>
+      res.status(204).location(`/api/v1/events/${r.id}`).json(r)
+    );
+  }
 }
 export default new Controller();

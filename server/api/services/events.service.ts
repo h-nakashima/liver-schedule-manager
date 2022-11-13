@@ -31,7 +31,6 @@ export class EventsService {
         id,
       });
     return Promise.resolve(result).then((events) => events[0]);
-    // return Promise.resolve(events).then((r) => r[id]);
   }
 
   create(name: string): Promise<Event> {
@@ -46,6 +45,17 @@ export class EventsService {
     L.info(`update id ${id} event with name ${name}`);
     return knex("events")
       .update({ name })
+      .where({
+        id,
+      })
+      .returning("*")
+      .then((events) => events[0]);
+  }
+
+  delete(id: number, name: string): Promise<Event> {
+    L.info(`delete id ${id} event with name ${name}`);
+    return knex("events")
+      .delete()
       .where({
         id,
       })

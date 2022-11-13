@@ -20,5 +20,12 @@ export class Controller {
       res.status(201).location(`/api/v1/events/${r.id}`).json(r)
     );
   }
+
+  update(req: Request, res: Response): void {
+    const id = Number.parseInt(req.params.id, 10);
+    EventsService.update(id, req.body.name).then((r) =>
+      res.status(200).location(`/api/v1/events/${r.id}`).json(r)
+    );
+  }
 }
 export default new Controller();

@@ -39,4 +39,18 @@ describe("Events", () => {
           .that.has.property("name")
           .equal("Zatsudan");
       }));
+
+  it("should update an event by id", () =>
+    request(Server)
+      .patch("/api/v1/events/2")
+      .send({ name: "test" })
+      .expect("Content-Type", /json/)
+      .then((r) => {
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("name")
+          .equal("test");
+      }));
+
+  // TODO: delete, searchのエンドポイントのテストを作成
 });

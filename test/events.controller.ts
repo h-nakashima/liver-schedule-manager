@@ -10,8 +10,8 @@ describe("Events", () => {
       .expect("Content-Type", /json/)
       .then((response) => {
         const expected = [
-          { id: 1, name: "Utawaku" },
-          { id: 2, name: "Zatsudan" },
+          { id: 1, name: "Utawaku", platform: "Youtube" },
+          { id: 2, name: "Zatsudan", platform: "bilibili" },
         ];
         expect(response.body).to.be.an("array").of.length(2);
         expect(response.body).to.be.deep.equal(expected);

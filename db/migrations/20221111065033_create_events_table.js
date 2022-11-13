@@ -6,6 +6,7 @@ exports.up = (knex) => {
   return knex.schema.createTable("events", (table) => {
     table.increments("id").primary();
     table.string("name", 32);
+    table.string("platform", 32);
   });
 };
 

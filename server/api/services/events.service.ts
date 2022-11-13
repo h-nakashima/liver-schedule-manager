@@ -14,6 +14,7 @@ export class EventsService {
       .select({
         id: "id",
         name: "name",
+        platform: "platform",
       })
       .from("events");
     return Promise.resolve(result);

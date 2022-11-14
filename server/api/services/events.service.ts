@@ -15,7 +15,7 @@ export class EventsService {
         id: "id",
         name: "name",
         platform: "platform",
-        dateTime: "date_time",
+        dateTime: "dateTime",
       })
       .from("events");
     return Promise.resolve(result);
@@ -36,10 +36,10 @@ export class EventsService {
     return Promise.resolve(result).then((events) => events[0]);
   }
 
-  create(name: string, platform: string): Promise<Event> {
+  create(name: string, platform: string, dateTime: string): Promise<Event> {
     L.info(`create event with name ${name}`);
     return knex("events")
-      .insert({ name, platform })
+      .insert({ name, platform, dateTime })
       .returning("*")
       .then((events) => events[0]);
   }

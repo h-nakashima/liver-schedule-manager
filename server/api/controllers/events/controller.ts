@@ -16,9 +16,11 @@ export class Controller {
   }
 
   create(req: Request, res: Response): void {
-    EventsService.create(req.body.name, req.body.platform).then((r) =>
-      res.status(201).location(`/api/v1/events/${r.id}`).json(r)
-    );
+    EventsService.create(
+      req.body.name,
+      req.body.platform,
+      req.body.dateTime
+    ).then((r) => res.status(201).location(`/api/v1/events/${r.id}`).json(r));
   }
 
   update(req: Request, res: Response): void {

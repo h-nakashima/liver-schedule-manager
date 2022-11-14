@@ -30,7 +30,11 @@ describe("Events", () => {
   it("should add a new event", () =>
     request(Server)
       .post("/api/v1/events")
-      .send({ name: "test", platform: "Nico" })
+      .send({
+        name: "test",
+        platform: "Nico",
+        dateTime: "2022-11-15T10:00:00.000Z",
+      })
       .expect("Content-Type", /json/)
       .then((r) => {
         expect(r.body)
@@ -41,6 +45,10 @@ describe("Events", () => {
           .to.be.an("object")
           .that.has.property("platform")
           .equal("Nico");
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("dateTime")
+          .equal("2022-11-15T10:00:00.000Z");
       }));
 
   it("should get an event by id", () =>

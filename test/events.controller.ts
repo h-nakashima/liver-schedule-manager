@@ -73,7 +73,11 @@ describe("Events", () => {
   it("should update an event by id", () =>
     request(Server)
       .patch("/api/v1/events/2")
-      .send({ name: "test", platform: "TwitCasting" })
+      .send({
+        name: "test",
+        platform: "TwitCasting",
+        dateTime: "2022-11-14T10:00:00.000Z",
+      })
       .expect("Content-Type", /json/)
       .then((r) => {
         expect(r.body)
@@ -84,6 +88,10 @@ describe("Events", () => {
           .to.be.an("object")
           .that.has.property("platform")
           .equal("TwitCasting");
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("dateTime")
+          .equal("2022-11-14T10:00:00.000Z");
       }));
 
   it("should delete an event by id", () =>

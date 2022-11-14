@@ -45,10 +45,15 @@ export class EventsService {
       .then((events) => events[0]);
   }
 
-  update(id: number, name: string, platform: string): Promise<Event> {
+  update(
+    id: number,
+    name: string,
+    platform: string,
+    dateTime: string
+  ): Promise<Event> {
     L.info(`update id ${id} event with name ${name}`);
     return knex("events")
-      .update({ name, platform })
+      .update({ name, platform, dateTime })
       .where({
         id,
       })

@@ -25,9 +25,12 @@ export class Controller {
 
   update(req: Request, res: Response): void {
     const id = Number.parseInt(req.params.id, 10);
-    EventsService.update(id, req.body.name, req.body.platform).then((r) =>
-      res.status(200).location(`/api/v1/events/${r.id}`).json(r)
-    );
+    EventsService.update(
+      id,
+      req.body.name,
+      req.body.platform,
+      req.body.dateTime
+    ).then((r) => res.status(200).location(`/api/v1/events/${r.id}`).json(r));
   }
 
   delete(req: Request, res: Response): void {

@@ -28,6 +28,7 @@ export class EventsService {
         id: "id",
         name: "name",
         platform: "platform",
+        dateTime: "dateTime",
       })
       .from("events")
       .where({

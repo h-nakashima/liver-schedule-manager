@@ -64,6 +64,10 @@ describe("Events", () => {
           .to.be.an("object")
           .that.has.property("platform")
           .equal("bilibili");
+        expect(r.body)
+          .to.be.an("object")
+          .that.has.property("dateTime")
+          .equal("2022-11-14T10:00:00.000Z");
       }));
 
   it("should update an event by id", () =>
